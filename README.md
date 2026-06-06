@@ -1,137 +1,257 @@
-# Forklift Safety Monitoring using YOLO and OpenCV
-
-## 프로젝트 소개 (Project Description)
-
-이 프로젝트는 산업현장 및 물류창고 환경에서 작업자의 안전을 보조하기 위한  
-컴퓨터 비전 기반 안전 모니터링 프로그램을 만드는 것을 목표로 합니다.
-
-프로그램은 YOLO와 OpenCV를 이용하여 영상 속 사람(person)과 지게차 및 차량(car, truck, bus)을 인식하고,  
-작업자가 위험구역(Danger Zone)에 진입할 경우 화면에 경고를 표시합니다.
-
-현재는 텀 프로젝트 제안(Proposal) 단계이며,  
-기본적인 프로토타입 기능만 구현된 상태입니다.  
-프로젝트 기간 동안 UI 개선, 위험구역 관리 기능, 오탐 감소 기능 등을 추가하여  
-최종적으로 실제 산업현장에서도 활용 가능한 형태로 발전시키는 것이 목표입니다.
-
-This project aims to build a computer vision-based safety monitoring system for industrial or warehouse environments using YOLO and OpenCV.  
-The current repository is an early prototype for the term project proposal stage.
-
-<br>
+# CCTV Live Worker Safety Monitoring System
+# CCTV 기반 작업자 안전 모니터링 시스템
 
 ---
 
-# 프로젝트 제작 계기 (Motivation)
+# Project Summary
+# 프로젝트 요약
 
-산업현장에서 지게차 운전수로 근무하면서 느꼈던 위험한 상황들을 바탕으로 제작하게 되었습니다.
+This project is a real-time worker safety monitoring system developed using Python, OpenCV, and YOLO.
 
-특히 다음과 같은 상황들은 실제 산업사고로 이어질 가능성이 높다고 생각했습니다.
+The system analyzes CCTV streams and recorded video files to detect workers and vehicles, identify dangerous situations, and provide visual warnings.
 
-- 지게차 작업구역에 작업자가 지나가는 상황
-- 지게차 사각지대(blind spot)에 사람이 존재하는 상황
-- 좁은 공간에 너무 많은 장비가 동시에 존재하는 상황
+본 프로젝트는 Python, OpenCV 및 YOLO를 활용하여 개발한 실시간 작업자 안전 모니터링 시스템이다.
 
-이 프로젝트는 이러한 위험 요소를 자동으로 감지하여  
-현장 안전관리자 또는 CCTV 근무자가 위험 상황을 빠르게 인지하고 대응할 수 있도록 돕는 것을 목표로 합니다.
-
-<br>
+CCTV 영상 및 녹화 영상을 분석하여 작업자와 차량을 검출하고 위험 상황을 판단하여 시각적 경고를 제공한다.
 
 ---
 
-# 현재 프로토타입 기능 (Current Prototype Features)
+# Main Features
+# 주요 기능
 
-- OpenCV를 이용한 비디오 파일 재생
-- YOLO 기반 객체 인식(Object Detection)
-- 사람(person) 및 차량 관련 클래스 감지
-- 감지된 객체에 Bounding Box 표시
-- 고정된 Danger Zone 표시
-- 위험구역 내부 사람 감지 시 경고 출력
-- 일시정지(Pause) 및 종료(Exit) 기능
-
-### Prototype Features (English)
-
-- Load a video file using OpenCV
-- Run YOLO object detection
-- Detect people and vehicle-related classes
-- Draw bounding boxes on detected objects
-- Display a fixed danger zone
-- Show warning messages when a person enters the danger zone
-- Basic pause and exit controls
-
-<br>
+- YOLO-based real-time object detection
+- Person and vehicle detection
+- Danger Zone monitoring
+- Ignore Zone support
+- Driver false-alarm reduction logic
+- 3-second confirmation rule
+- RTSP live stream support
+- Recorded video file support
+- Automatic reconnection
+- Video recording
+- Image capture
+- Zoom and Pan
+- Zone Manager
+- JSON-based zone storage
+- Stream/UI/Detection FPS monitoring
+- Graphical control panel
 
 ---
 
-# 최종 구현 예정 기능 (Planned Final Features)
+# Detailed Description
+# 상세 기능 설명
 
-- 마우스를 이용한 Danger Zone 생성 기능
-- JSON 기반 Danger Zone / Ignore Zone 저장 및 불러오기
-- Ignore Zone 설정 기능
-- 재생, 정지, 배속, 녹화 등을 위한 UI Control Panel 제작
-- 화면 녹화 및 결과 영상 저장 기능
-- CCTV / RTSP 스트림 입력 지원
-- 지게차 내부 작업자를 보행자로 인식하는 문제 개선
-- Warning Delay Logic을 이용한 오탐(False Alarm) 감소
-- 현장 환경에 맞는 YOLO 모델 테스트 및 최적화
-- 사용자 친화적인 UI 구성
+## 1. Real-Time Object Detection
+YOLO is used to detect persons and vehicles in real time.
 
-### Planned Features (English)
-
-- Mouse-based danger zone selection
-- Save and load danger zones using JSON files
-- Ignore zone setting
-- Better UI control panel for playback and recording
-- Processed video recording and saving
-- CCTV / RTSP stream support
-- Reduce false alarms
-- Test and optimize different YOLO models
-
-<br>
+YOLO를 이용하여 사람(Person) 및 차량(Car, Truck, Bus)을 실시간으로 검출한다.
 
 ---
 
-# 사용 기술 (Technologies)
+## 2. Danger Zone Monitoring
 
-- Python
-- OpenCV
-- Ultralytics YOLO
-- NumPy
-- JSON (planned)
+Users can define custom danger zones.
 
-<br>
+When a worker enters a danger zone, the system changes its status and displays a warning.
+
+사용자가 위험구역(Danger Zone)을 직접 지정할 수 있으며, 작업자가 해당 구역에 진입하면 경고 상태를 표시한다.
 
 ---
 
-# 기대 결과 (Expected Final Result)
+## 3. Ignore Zone Monitoring
 
-최종적으로는 현장 안전관리자 또는 CCTV 근무자가  
-위험 상황을 빠르게 파악하고 대응할 수 있도록 보조하는 프로그램을 만드는 것이 목표입니다.
+Ignore zones exclude unnecessary regions from safety analysis.
 
-또한 처음 사용하는 사람도 쉽게 사용할 수 있도록  
-직관적이고 사용자 친화적인 UI를 구성하는 것을 목표로 하고 있습니다.
+Objects detected inside ignore zones are ignored.
 
-The final goal is to create a practical safety monitoring system that helps workers or CCTV operators quickly identify dangerous situations in industrial environments.
-
-<br>
+무시구역(Ignore Zone)을 설정하여 불필요한 영역을 분석 대상에서 제외할 수 있다.
 
 ---
 
-# 실행 방법 (How to Run Prototype)
+## 4. Driver Detection and False-Alarm Reduction
 
-```bash
-pip install opencv-python ultralytics numpy
-python app_proposal.py
+The system checks whether a detected person is located inside a vehicle bounding box.
+
+This logic is designed to reduce false alarms caused by forklift drivers being incorrectly detected as workers inside dangerous areas.
+
+차량 내부의 사람을 별도로 판별하여 지게차 운전자가 위험구역 작업자로 잘못 인식되는 오탐을 줄인다.
+
+A warning is generated only when the detection remains valid continuously for approximately three seconds.
+
+또한 약 3초 동안 연속 검출된 경우에만 경고를 발생시켜 순간적인 오검출을 줄인다.
+
+---
+
+## 5. RTSP Live CCTV Support
+
+Supports RTSP-based CCTV streams.
+
+Latest-frame processing is used to reduce latency.
+
+RTSP 기반 CCTV 스트림을 지원하며 최신 프레임 기반 처리로 지연을 최소화한다.
+
+---
+
+## 6. Recorded Video File Support
+
+The program can analyze recorded video files as well as live streams.
+
+실시간 CCTV뿐 아니라 녹화된 영상 파일도 분석할 수 있다.
+
+---
+
+## 7. Automatic Reconnection
+
+The system automatically reconnects when the RTSP connection is lost.
+
+RTSP 연결이 끊어진 경우 자동으로 재연결을 시도한다.
+
+---
+
+## 8. Video Recording System
+
+Supports video recording and automatic file saving.
+
+영상 녹화 및 자동 저장 기능을 제공한다.
+
+---
+
+## 9. Image Capture System
+
+The current monitoring screen can be saved as an image.
+
+현재 모니터링 화면을 이미지로 저장할 수 있다.
+
+---
+
+## 10. Zoom and Pan Functions
+
+Supports zooming with the mouse wheel and panning by dragging.
+
+마우스 휠 확대/축소 및 드래그 이동 기능을 지원한다.
+
+---
+
+## 11. Zone Manager
+
+Provides creation, deletion, and management of danger zones and ignore zones.
+
+위험구역과 무시구역의 생성, 삭제 및 관리 기능을 제공한다.
+
+Zone information is stored in JSON files and automatically loaded later.
+
+구역 정보는 JSON 파일로 저장 및 재사용된다.
+
+---
+
+## 12. Performance Monitoring
+
+Displays:
+
+- Stream FPS
+- UI FPS
+- Detection FPS
+- System status
+
+Stream FPS, UI FPS, Detection FPS 및 현재 상태를 표시한다.
+
+---
+
+## 13. User Interface & Control Method
+
+The system consists of a Control Panel and a Monitoring Window.
+
+Most functions can be controlled using the mouse through the graphical control panel.
+
+사용자 인터페이스는 Control Panel과 Monitoring Window로 구성된다.
+
+대부분의 기능은 마우스를 이용하여 조작할 수 있다.
+
+Mouse-supported functions:
+
+- Record
+- Capture
+- Reconnect
+- Pause View
+- Zoom Control
+- Zone Manager
+
+마우스로 지원되는 기능:
+
+- 녹화
+- 캡처
+- 재연결
+- 화면 정지
+- 확대/축소
+- 구역 관리
+
+Zone points are selected using the mouse.
+
+However, saving, canceling, and resetting a newly created zone currently require keyboard input.
+
+구역 점 선택은 마우스로 수행된다.
+
+다만 새 구역의 저장, 취소, 초기화는 현재 키보드 입력이 필요하다.
+
+---
+
+## 14. Folder Structure
+
+```text
+Recordings/    -> Recorded videos
+Captures/      -> Captured images
+danger_zones.json
+ignore_zones.json
 ```
 
-실행 전 테스트 영상 파일을 프로젝트 폴더 안에 넣고,  
-코드 내부 `VIDEO_PATH` 경로를 올바르게 설정해야 합니다.
+---
 
-<br>
+## 15. Required Libraries
+
+```bash
+pip install opencv-python numpy ultralytics
+```
 
 ---
 
-# 프로젝트 상태 (Project Status)
+## 16. Program Execution
 
-현재는 Proposal(제안서) 단계의 초기 프로토타입입니다.
+```bash
+python cctv_live_worker_safety_side_by_side.py
+```
 
-현재 코드는 최종 제출 버전이 아니며,  
-프로젝트 진행 과정에서 기능 추가 및 성능 개선이 계속 이루어질 예정입니다.
+or
+
+```bash
+python cctv_live_worker_safety_side_by_side.py sample.mp4
+```
+
+---
+
+## 17. Expected Benefits
+
+- Improved workplace safety
+- Continuous monitoring
+- Reduced manual supervision workload
+- Faster identification of dangerous situations
+
+- 산업현장 안전성 향상
+- 지속적인 감시
+- 관리 부담 감소
+- 위험 상황 조기 발견
+
+---
+
+## 18. Conclusion
+
+This project demonstrates a practical CCTV-based worker safety monitoring system using computer vision and deep learning.
+
+본 프로젝트는 컴퓨터 비전과 딥러닝을 활용한 실용적인 CCTV 기반 작업자 안전 모니터링 시스템을 구현하였다.
+
+---
+
+## Author
+
+Jun Seong Yang
+
+2026
