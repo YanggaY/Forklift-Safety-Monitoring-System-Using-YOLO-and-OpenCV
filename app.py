@@ -20,7 +20,7 @@ from ultralytics import YOLO
 
 # RTSP stream address or recorded video file path.
 # You can also run: python cctv_live_worker_safety_file_ok.py your_video.mp4
-VIDEO_PATH = "ff.mp4"
+VIDEO_PATH = "warehouse.mp4"
 
 DANGER_ZONE_PATH = "danger_zones.json"
 IGNORE_ZONE_PATH = "ignore_zones.json"
