@@ -3,21 +3,21 @@
 
 ---
 
-# Project Summary
-# 프로젝트 요약
+## Project Summary
+## 프로젝트 요약
 
 This project is a real-time worker safety monitoring system developed using Python, OpenCV, and YOLO.
 
-The system analyzes CCTV streams and recorded video files to detect workers and vehicles, identify dangerous situations, and provide visual warnings.
+The system analyzes CCTV streams or recorded video files to detect workers and vehicles, identify dangerous situations, and provide visual warnings.
 
 본 프로젝트는 Python, OpenCV 및 YOLO를 활용하여 개발한 실시간 작업자 안전 모니터링 시스템이다.
 
-CCTV 영상 및 녹화 영상을 분석하여 작업자와 차량을 검출하고 위험 상황을 판단하여 시각적 경고를 제공한다.
+CCTV 영상 또는 녹화 영상을 분석하여 작업자와 차량을 검출하고 위험 상황을 판단하여 시각적 경고를 제공한다.
 
 ---
 
-# Main Features
-# 주요 기능
+## Main Features
+## 주요 기능
 
 - YOLO-based real-time object detection
 - Person and vehicle detection
@@ -38,17 +38,83 @@ CCTV 영상 및 녹화 영상을 분석하여 작업자와 차량을 검출하�
 
 ---
 
-# Detailed Description
-# 상세 기능 설명
+## How to Run
+## 실행 방법
 
-## 1. Real-Time Object Detection
+This program receives a video source through a command-line argument.
+
+If no argument is given, the program uses the default video file:
+
+```python
+VIDEO_PATH = "sample.mp4"
+```
+
+본 프로그램은 실행할 때 명령행 인자(command-line argument)로 영상 소스를 입력받는다.
+
+아무 인자도 입력하지 않으면 기본 영상 파일인 `sample.mp4`를 사용한다.
+
+---
+
+### 1. Run with Default Video
+### 1. 기본 영상으로 실행
+
+```bash
+python app.py
+```
+
+This runs the program using:
+
+```text
+sample.mp4
+```
+
+위 명령어는 기본 설정된 `sample.mp4` 파일을 사용하여 실행한다.
+
+---
+
+### 2. Run with a Recorded Video File
+### 2. 녹화 영상 파일로 실행
+
+```bash
+python app.py sample.mp4
+```
+
+Example:
+
+```bash
+python app.py forklift_test.mp4
+```
+
+This allows the professor or evaluator to test the program using a recorded video file.
+
+교수님 또는 평가자가 녹화된 영상 파일을 이용하여 프로그램을 테스트할 수 있다.
+
+---
+
+### 3. Run with an RTSP CCTV Stream
+### 3. RTSP CCTV 스트림으로 실행
+
+```bash
+python app.py rtsp://210.99.70.120:1935/live/cctv001.stream
+```
+
+The program automatically treats `rtsp://`, `rtmp://`, `http://`, and `https://` sources as live streams.
+
+프로그램은 `rtsp://`, `rtmp://`, `http://`, `https://`로 시작하는 입력을 실시간 스트림으로 처리한다.
+
+---
+
+## Detailed Description
+## 상세 기능 설명
+
+### 1. Real-Time Object Detection
 YOLO is used to detect persons and vehicles in real time.
 
 YOLO를 이용하여 사람(Person) 및 차량(Car, Truck, Bus)을 실시간으로 검출한다.
 
 ---
 
-## 2. Danger Zone Monitoring
+### 2. Danger Zone Monitoring
 
 Users can define custom danger zones.
 
@@ -58,7 +124,7 @@ When a worker enters a danger zone, the system changes its status and displays a
 
 ---
 
-## 3. Ignore Zone Monitoring
+### 3. Ignore Zone Monitoring
 
 Ignore zones exclude unnecessary regions from safety analysis.
 
@@ -68,7 +134,7 @@ Objects detected inside ignore zones are ignored.
 
 ---
 
-## 4. Driver Detection and False-Alarm Reduction
+### 4. Driver Detection and False-Alarm Reduction
 
 The system checks whether a detected person is located inside a vehicle bounding box.
 
@@ -82,7 +148,7 @@ A warning is generated only when the detection remains valid continuously for ap
 
 ---
 
-## 5. RTSP Live CCTV Support
+### 5. RTSP Live CCTV Support
 
 Supports RTSP-based CCTV streams.
 
@@ -92,7 +158,7 @@ RTSP 기반 CCTV 스트림을 지원하며 최신 프레임 기반 처리로 지
 
 ---
 
-## 6. Recorded Video File Support
+### 6. Recorded Video File Support
 
 The program can analyze recorded video files as well as live streams.
 
@@ -100,7 +166,7 @@ The program can analyze recorded video files as well as live streams.
 
 ---
 
-## 7. Automatic Reconnection
+### 7. Automatic Reconnection
 
 The system automatically reconnects when the RTSP connection is lost.
 
@@ -108,7 +174,7 @@ RTSP 연결이 끊어진 경우 자동으로 재연결을 시도한다.
 
 ---
 
-## 8. Video Recording System
+### 8. Video Recording System
 
 Supports video recording and automatic file saving.
 
@@ -116,7 +182,7 @@ Supports video recording and automatic file saving.
 
 ---
 
-## 9. Image Capture System
+### 9. Image Capture System
 
 The current monitoring screen can be saved as an image.
 
@@ -124,7 +190,7 @@ The current monitoring screen can be saved as an image.
 
 ---
 
-## 10. Zoom and Pan Functions
+### 10. Zoom and Pan Functions
 
 Supports zooming with the mouse wheel and panning by dragging.
 
@@ -132,7 +198,7 @@ Supports zooming with the mouse wheel and panning by dragging.
 
 ---
 
-## 11. Zone Manager
+### 11. Zone Manager
 
 Provides creation, deletion, and management of danger zones and ignore zones.
 
@@ -144,7 +210,7 @@ Zone information is stored in JSON files and automatically loaded later.
 
 ---
 
-## 12. Performance Monitoring
+### 12. Performance Monitoring
 
 Displays:
 
@@ -157,7 +223,7 @@ Stream FPS, UI FPS, Detection FPS 및 현재 상태를 표시한다.
 
 ---
 
-## 13. User Interface & Control Method
+### 13. User Interface & Control Method
 
 The system consists of a Control Panel and a Monitoring Window.
 
@@ -195,7 +261,8 @@ However, saving, canceling, and resetting a newly created zone currently require
 
 ---
 
-## 14. Folder Structure
+## Folder Structure
+## 폴더 구조
 
 ```text
 Recordings/    -> Recorded videos
@@ -206,7 +273,8 @@ ignore_zones.json
 
 ---
 
-## 15. Required Libraries
+## Required Libraries
+## 필요 라이브러리
 
 ```bash
 pip install opencv-python numpy ultralytics
@@ -214,21 +282,8 @@ pip install opencv-python numpy ultralytics
 
 ---
 
-## 16. Program Execution
-
-```bash
-python cctv_live_worker_safety_side_by_side.py
-```
-
-or
-
-```bash
-python cctv_live_worker_safety_side_by_side.py sample.mp4
-```
-
----
-
-## 17. Expected Benefits
+## Expected Benefits
+## 기대 효과
 
 - Improved workplace safety
 - Continuous monitoring
@@ -242,7 +297,8 @@ python cctv_live_worker_safety_side_by_side.py sample.mp4
 
 ---
 
-## 18. Conclusion
+## Conclusion
+## 결론
 
 This project demonstrates a practical CCTV-based worker safety monitoring system using computer vision and deep learning.
 
