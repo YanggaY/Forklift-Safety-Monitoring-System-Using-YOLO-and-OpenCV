@@ -10,6 +10,8 @@ YOLOv8 객체 검출, Dynamic Zone Tracking, Danger Zone Monitoring, Forklift Oc
 
 RTSP 실시간 스트림과 녹화 영상 모두 지원하며 장시간 무인 모니터링 환경을 고려하여 개발되었습니다.
 
+sample 영상은 실제 제가 일했던 호주의 Cotton warehouse 현장 영상입니다.
+
 ## Requirements
 
 - Python 3.10+
