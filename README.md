@@ -6,6 +6,8 @@ Real-time CCTV-based worker safety monitoring system with Dynamic Zone Tracking,
 
 YOLOv8 객체 검출, Dynamic Zone Tracking, Danger Zone Monitoring, Forklift Occupancy Detection 기능을 통합하여 작업자 안전을 향상시키도록 설계되었습니다.
 
+실제 지게차 운전수 경력과 CCTV 근무 경력을 토대로 만들었습니다.
+
 RTSP 실시간 스트림과 녹화 영상 모두 지원하며 장시간 무인 모니터링 환경을 고려하여 개발되었습니다.
 
 ## Requirements
