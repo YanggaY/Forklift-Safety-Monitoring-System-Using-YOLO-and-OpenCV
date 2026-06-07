@@ -191,6 +191,10 @@ Supports zooming and panning.
 
 Danger Zone 및 Ignore Zone을 추가, 삭제 및 관리할 수 있습니다.
 
+## mkv recordings
+
+mkv형식을 사용해 혹시 프로그램이 강제종료 되거나, 정전 상황에서도 녹화영상을 복구 하기 용이하게 파일 형식을 설정했습니다.
+
 ## Keyboard Controls
 
 | Key | Function |
